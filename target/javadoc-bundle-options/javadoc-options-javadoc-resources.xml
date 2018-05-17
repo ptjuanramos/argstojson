@@ -6,5 +6,9 @@
   <tagletArtifacts>
     <tagletArtifact />
   </tagletArtifacts>
+  <links>
+    <link>https://commons.apache.org/proper/commons-lang/apidocs/</link>
+    <link>https://stleary.github.io/JSON-java/index.html?org/json/package-summary.html</link>
+  </links>
   <javadocResourcesDirectory>src/main/javadoc</javadocResourcesDirectory>
 </javadocOptions>
