@@ -30,16 +30,20 @@ public class ArgsToJson {
 			String groupAndAtt = cleanArg.split("=")[0];
 			String attValue = cleanArg.split("=")[1];
 
-			String group = groupAndAtt.split("\\.")[0];
-			String attribute = groupAndAtt.split("\\.")[1];
+			if(groupAndAtt.split("\\.").length >= 2) {
+				String group = groupAndAtt.split("\\.")[0];
+				String attribute = groupAndAtt.split("\\.")[1];
 
-			JSONObject attAndValueJSON = new JSONObject();
-			attAndValueJSON.put(attribute, attValue);
+				JSONObject attAndValueJSON = new JSONObject();
+				attAndValueJSON.put(attribute, attValue);
 
-			if(jsonArgs.isNull(group)) {
-				jsonArgs.putOpt(group, attAndValueJSON);
+				if(jsonArgs.isNull(group)) {
+					jsonArgs.putOpt(group, attAndValueJSON);
+				} else {
+					jsonArgs.putOpt(group, mergeJSONObjects(jsonArgs.getJSONObject(group), attAndValueJSON));
+				}
 			} else {
-				jsonArgs.putOpt(group, mergeJSONObjects(jsonArgs.getJSONObject(group), attAndValueJSON));
+				jsonArgs.putOpt(groupAndAtt, attValue);
 			}
 		}
 
